@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comidinhas da Manu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #fff7f0 0%, #fff3e8 40%, #fde8d8 100%);
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Leaf decorations */
+    body::before {
+      content: '🌿';
+      position: fixed;
+      top: -10px;
+      left: -10px;
+      font-size: 120px;
+      opacity: 0.12;
+      transform: rotate(-20deg);
+      pointer-events: none;
+    }
+    body::after {
+      content: '🌿';
+      position: fixed;
+      bottom: -10px;
+      right: -10px;
+      font-size: 120px;
+      opacity: 0.12;
+      transform: rotate(160deg);
+      pointer-events: none;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Avatar */
+    .avatar-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .avatar-wrap img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 20px rgba(230, 90, 30, 0.18);
+      display: block;
+    }
+
+    .name {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.55rem;
+      color: #e85c1a;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #4a7c59;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 0.82rem;
+      color: #9e6e4a;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #e85c1a, #f7b731);
+      border-radius: 99px;
+      margin-bottom: 28px;
+    }
+
+    /* Buttons */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 16px 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
+
+    .btn:active {
+      transform: translateY(0px);
+    }
+
+    .btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .btn-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      opacity: 0.7;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .btn-title {
+      font-size: 0.97rem;
+      font-weight: 800;
+    }
+
+    /* WhatsApp */
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+    }
+    .btn-whatsapp .btn-icon { background: rgba(255,255,255,0.2); }
+
+    /* Instagram */
+    .btn-instagram {
+      background: linear-gradient(135deg, #f9a825 0%, #e85c1a 45%, #c2185b 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(232, 92, 26, 0.28);
+    }
+    .btn-instagram .btn-icon { background: rgba(255,255,255,0.2); }
+
+    /* Cardápio */
+    .btn-cardapio {
+      background: #fff;
+      color: #e85c1a;
+      border: 2.5px solid #e85c1a;
+      box-shadow: 0 4px 14px rgba(232, 92, 26, 0.10);
+    }
+    .btn-cardapio .btn-icon { background: #fff7f0; }
+    .btn-cardapio .btn-label { color: #c0522a; }
+
+    /* Encomenda */
+    .btn-encomenda {
+      background: linear-gradient(135deg, #fff3e8 0%, #fde8d8 100%);
+      color: #4a7c59;
+      border: 2.5px solid #4a7c59;
+      box-shadow: 0 4px 14px rgba(74, 124, 89, 0.10);
+    }
+    .btn-encomenda .btn-icon { background: #eaf4ec; }
+    .btn-encomenda .btn-label { color: #4a7c59; }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: #c0a090;
+      text-align: center;
+    }
+    .footer span { color: #e85c1a; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar-wrap">
+      <!-- Logo da Manu como avatar -->
+      <img src="https://i.imgur.com/placeholder.png" alt="Comidinhas da Manu"
+           onerror="this.style.background='#fff7f0';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.innerHTML='🍽️';"
+           id="logo-img" />
+    </div>
+
+    <h1 class="name">Comidinhas da Manu</h1>
+    <p class="subtitle">Personal Home Chef</p>
+    <p class="tagline">Sabor, saúde e praticidade para o seu dia a dia 🍃</p>
+    <div class="divider"></div>
+
+    <div class="links">
+
+      <!-- WhatsApp principal -->
+      <a class="btn btn-whatsapp"
+         href="https://wa.me/5511968022504?text=Ol%C3%A1%20Manu!%20Vim%20pelo%20Instagram%20e%20quero%20saber%20mais%20sobre%20seus%20servi%C3%A7os%20%F0%9F%8D%BD%EF%B8%8F"
+         target="_blank" rel="noopener">
+        <div class="btn-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <div class="btn-text">
+          <span class="btn-label">Fale comigo</span>
+          <span class="btn-title">WhatsApp da Manu</span>
+        </div>
+      </a>
+
+      <!-- Instagram -->
+      <a class="btn btn-instagram"
+         href="https://www.instagram.com/comidinhas.da.manu_"
+         target="_blank" rel="noopener">
+        <div class="btn-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </div>
+        <div class="btn-text">
+          <span class="btn-label">Me siga</span>
+          <span class="btn-title">Instagram @comidinhas.da.manu_</span>
+        </div>
+      </a>
+
+      <!-- Cardápio -->
+      <a class="btn btn-cardapio"
+         href="https://wa.me/5511968022504?text=Ol%C3%A1%20Manu!%20Quero%20ver%20o%20card%C3%A1pio%20%F0%9F%8D%BD%EF%B8%8F"
+         target="_blank" rel="noopener">
+        <div class="btn-icon" style="font-size:1.4rem;">🍽️</div>
+        <div class="btn-text">
+          <span class="btn-label">Confira</span>
+          <span class="btn-title">Ver Cardápio</span>
+        </div>
+      </a>
+
+      <!-- Encomenda -->
+      <a class="btn btn-encomenda"
+         href="https://wa.me/5511968022504?text=Ol%C3%A1%20Manu!%20Quero%20fazer%20uma%20encomenda%20%F0%9F%8D3"
+         target="_blank" rel="noopener">
+        <div class="btn-icon" style="font-size:1.4rem;">📦</div>
+        <div class="btn-text">
+          <span class="btn-label">Solicitar</span>
+          <span class="btn-title">Fazer Encomenda</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      Feito com <span>♥</span> para a Manu · Nutrição & Sabor
+    </div>
+  </div>
+
+  <script>
+    // Tenta carregar o logo da Manu como avatar
+    const img = document.getElementById('logo-img');
+    // Como não temos a imagem hospedada, usa um emoji fallback elegante
+    img.onerror = function() {
+      this.outerHTML = `<div style="
+        width:110px;height:110px;border-radius:50%;
+        background:linear-gradient(135deg,#fff7f0,#fde8d8);
+        border:4px solid #fff;
+        box-shadow:0 4px 20px rgba(230,90,30,0.18);
+        display:flex;align-items:center;justify-content:center;
+        font-size:3rem;
+      ">🍃</div>`;
+    };
+    img.src = img.src; // trigger onerror if needed
+  </script>
+</body>
+</html>
