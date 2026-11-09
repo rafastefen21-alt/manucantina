@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/laudos-insalubridade-periculosidade-ltcat-guarulhos", "destination": "/lp-laudos.html" },
+    { "source": "/exame-ocupacional-medicina-do-trabalho-guarulhos", "destination": "/lp-exame-sst.html" }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [ { "key": "X-Content-Type-Options", "value": "nosniff" } ] }
+  ]
+}
