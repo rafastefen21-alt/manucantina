@@ -387,6 +387,19 @@ footer a{color:#E6C887}
   .hero .cta-row a[href^="tel:"]{display:none}
   .hero .cta-row{align-items:stretch}
 }
+/* v3b: larguras em ordem (titulo > subtitulo e pontos) */
+@media (max-width:640px){
+  .hero{padding-top:44px}
+  .hero h1{font-size:min(11.3vw,2.85rem);line-height:1.08;max-width:none}
+  .hero .h1-rest{font-size:min(4.4vw,1.1rem);margin-top:14px}
+  .hero .marks{margin-top:22px}
+  .hero .marks li{font-size:min(4vw,1rem)}
+}
+@media (max-width:640px){
+  .hero .h1-rest{font-size:min(3.9vw,1.05rem)}
+  .hero .marks li{font-size:min(3.7vw,.98rem);gap:10px}
+  .hero .marks li::before{width:20px;height:20px}
+}
 </style>
 </head>
 <body id="topo">
